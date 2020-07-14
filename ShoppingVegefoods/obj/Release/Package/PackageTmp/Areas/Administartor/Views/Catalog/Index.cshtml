@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Quản Lý Loại Sản Phẩm";
+    ViewBag.Page = "Loại Sản Phẩm";
+    Layout = "~/Areas/Administartor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="min-height: 976.13px;">
+    @Html.Partial("_HeaderPartial")
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách loại sản phẩm <a href="@Url.Action("them-moi","Catalog")"><i class="add-icon fas fa-plus"></i></a></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>#</th>
+                                                <th>Tên</th>
+                                                <th>Tình trạng</th>
+                                                @*<th>Menu Cha</th>*@
+                                                <th>Hành Động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach(var catalog in Model)
+                                            {
+                                                <tr>
+                                                    <td>@catalog.ID</td>
+                                                    <td>@catalog.NAME</td>
+                                                    <td>@catalog.STATUS_NAME</td>
+                                                    @*<td>@catalog.PARENT_ID</td>*@
+                                                    <td>
+                                                        <a href="#" onclick="loadDataCatalogEdit('@catalog.ID')" title="Cập nhật">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>|
+                                                        <a href="#" style="color:red;" onclick="showModalDelete('@catalog.ID')" title="Xóa">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr role="row">
+                                                <th>ID</th>
+                                                <th>Tên</th>
+                                                <th>Tình trạng</th>
+                                                @*<th>Menu Cha</th>*@
+                                                <th>Hành Động</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<script src="~/Content/Admin/script/catalog.js"></script>

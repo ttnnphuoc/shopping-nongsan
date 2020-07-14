@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Thêm Mới Loại Sản Phẩm";
+    ViewBag.Page = "Loại Sản Phẩm";
+    Layout = "~/Areas/Administartor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="min-height: 976.13px;">
+    @Html.Partial("_HeaderPartial")
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Thêm mới loại sản phẩm </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @*<form role="form" action="/Catalog/Create" method="post">*@
+                                @using (Html.BeginForm("Create", "Catalog", FormMethod.Post))
+                                {
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="name">Tên</label>
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Nhập tên loại">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="parent_id">Loại Cha</label>
+                                            <select class="select2bs4 list-box tri-state form-control" name="parent_id" id="parent_id">
+                                                <option value="">------------</option>
+                                                @foreach (var cat in Model)
+                                                {
+                                                    <option value="@cat.ID">@cat.NAME</option>
+                                                }
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer" style="background-color:transparent;">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                }
+
+                                @*</form>*@
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>

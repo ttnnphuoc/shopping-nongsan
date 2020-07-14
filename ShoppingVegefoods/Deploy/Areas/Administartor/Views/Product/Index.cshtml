@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Quản Lý Sản Phẩm";
+    ViewBag.Page = "Sản Phẩm";
+    Layout = "~/Areas/Administartor/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper" style="min-height: 976.13px;">
+    @Html.Partial("_HeaderPartial")
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách sản phẩm <a href="@Url.Action("them-moi","Product")"><i class="add-icon fas fa-plus"></i></a></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>#</th>
+                                                <th>Tên</th>
+                                                <th>Loại</th>
+                                                <th>Giá</th>
+                                                <th>Giảm giá</th>
+                                                <th>Mô tả</th>
+                                                <th>Tình trạng</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var product in Model)
+                                            {
+                                                <tr>
+                                                    <td>@product.IDX</td>
+                                                    <td>@product.NAME</td>
+                                                    <td>@product.CATALOG_NAME</td>
+                                                    <td>@string.Format("{0:N0}", @product.PRICE)</td>
+                                                    <td>@product.DISCOUNT</td>
+                                                    <td>@product.DESCRIPTION</td>
+                                                    <td>@product.STATUS_NAME</td>
+                                                    <td>
+                                                        <a href="#" onclick="loadDataProductEdit('@product.ID')" title="Cập nhật">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>|
+                                                        <a href="#" style="color:red;" onclick="showModalDelete('@product.ID')" title="Xóa">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr role="row">
+                                                <th>#</th>
+                                                <th>Tên</th>
+                                                <th>Loại</th>
+                                                <th>Giá</th>
+                                                <th>Giảm giá</th>
+                                                <th>Mô tả</th>
+                                                <th>Tình trạng</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<script src="~/Content/Admin/script/product.js"></script>
